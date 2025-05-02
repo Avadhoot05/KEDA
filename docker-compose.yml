@@ -1,0 +1,13 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"    # for app connections
+      - "15672:15672"  # for management UI
+    container_name: rabbitmq
+
+  app-service:
+    build: ./src
+    depends_on:
+      - rabbitmq
