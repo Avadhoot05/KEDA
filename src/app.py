@@ -23,13 +23,13 @@ def createOrder():
             'quantity': quantity,
             'price': price
         }
-    }), 201
+    }), 200
 
 @app.route('/', methods=['GET'])
 def homePage():
     return jsonify({
             'message': 'This is Home page',
-        }), 201
+        }), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
