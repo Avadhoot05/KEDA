@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consumer
+  template:
+    metadata:
+      labels:
+        app: consumer
+    spec:
+      containers:
+        - name: consumer
+          image: consumer:latest
+          imagePullPolicy: IfNotPresent
+      #     volumeMounts:
+      #       - name: log-volume
+      #         mountPath: /app
+      #     env:
+      #       - name: RABBITMQ_HOST
+      #         value: "rabbitmq"  # Should match the service name of your RabbitMQ deployment
+      # volumes:
+      #   - name: log-volume
+      #     emptyDir: {}
