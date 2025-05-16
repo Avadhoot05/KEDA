@@ -12,6 +12,10 @@ spec:
       labels:
         app: consumer
     spec:
+      initContainers:
+        - name: wait-for-rabbit
+          image: busybox
+          command: ['sh', '-c', 'until nc -z rabbitmq 5672; do echo waiting for rabbitmq; sleep 2; done;']
       containers:
         - name: consumer
           image: consumer:latest
