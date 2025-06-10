@@ -20,7 +20,7 @@ def start_consumer():
     virtual_host='/',          # Default virtual host
     credentials=pika.PlainCredentials('guest', 'guest')))
     channel = connection.channel()
-    channel.queue_declare(queue='order_queue')
+    channel.queue_declare(queue='order_queue', durable=True)
 
     channel.basic_consume(queue='order_queue', on_message_callback=callback)
 

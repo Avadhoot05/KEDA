@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: consumer
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: consumer
@@ -20,6 +19,15 @@ spec:
         - name: consumer
           image: consumer:latest
           imagePullPolicy: IfNotPresent
+          env:
+            - name: RABBITMQ_CONN
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-secret
+                  key: RabbitMqHost
+
+
+    
       #     volumeMounts:
       #       - name: log-volume
       #         mountPath: /app
